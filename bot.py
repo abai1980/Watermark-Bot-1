@@ -7,11 +7,6 @@
 
 # Edit anything at your own risk!
 
-# Don't forget to help me if I done any mistake in the codes.
-# Support Group: @DevsZone 
-# Bots Channel: @Discovery_Updates
-
-
 import os
 import time
 import json
@@ -48,16 +43,15 @@ async def HelpWatermark(bot, cmd):
 	if Config.UPDATES_CHANNEL:
 		fsub = await handle_force_subscribe(bot, cmd)
 		if fsub == 400:
-			return
+		return
 	await cmd.reply_text(
 		text=Config.USAGE_WATERMARK_ADDER,
 		parse_mode="Markdown",
-		reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Developer", url="https://t.me/AbirHasan2005"), InlineKeyboardButton("Support Group", url="https://t.me/DevsZone")], [InlineKeyboardButton("Bots Channel", url="https://t.me/Discovery_Updates")], [InlineKeyboardButton("Source Code", url="https://github.com/AbirHasan2005/Watermark-Bot")]]),
-		disable_web_page_preview=True
+		reply_markup=([[InlineKeyboardButton("🤖 Updates Channel", url="https://t.me/APBotz"), InlineKeyboardButton("👥 Support Group", url="https://t.me/APSupportGroup")]]),
+	 disable_web_page_preview=True
 	)
 
-
-@AHBot.on_message(filters.command("settings") & filters.private)
+@APBot.on_message(filters.command("settings") & filters.private)
 async def SettingsBot(bot, cmd):
 	if not await db.is_user_exist(cmd.from_user.id):
 		await db.add_user(cmd.from_user.id)
@@ -102,6 +96,8 @@ async def SettingsBot(bot, cmd):
 		size_tag = "40%"
 	elif int(watermark_size) == 45:
 		size_tag = "45%"
+        elif int(watermark_size) == 60:
+		size_tag = "60%"
 	else:
 		size_tag = "7%"
 	## --- Next --- ##
@@ -415,11 +411,11 @@ async def button(bot, cmd: CallbackQuery):
 					disable_web_page_preview=True
 				)
 				return
-		await cmd.message.edit(
-			text=Config.USAGE_WATERMARK_ADDER,
-			parse_mode="Markdown",
-			reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Developer", url="https://t.me/AbirHasan2005"), InlineKeyboardButton("Support Group", url="https://t.me/DevsZone")], [InlineKeyboardButton("Bots Channel", url="https://t.me/Discovery_Updates")]]),
-			disable_web_page_preview=True
+	await cmd.reply_text(
+		text=Config.USAGE_WATERMARK_ADDER,
+		parse_mode="Markdown",
+		reply_markup=([[InlineKeyboardButton("Updates Channel", url="https://t.me/APBotz"), InlineKeyboardButton("Support Group", url="https://t.me/APSupportGroup")]]),
+	 disable_web_page_preview=True
 		)
 
 	elif "lol" in cb_data:
@@ -442,7 +438,7 @@ async def button(bot, cmd: CallbackQuery):
 					return
 			except UserNotParticipant:
 				await cmd.message.edit(
-					text="**You Still Didn't Join ☹️, Please Join My Updates Channel to use this Bot!**\n\nDue to Overload, Only Channel Subscribers can use the Bot!",
+					text="**You Still Didn't Join My Updates Channel, Please Join My Updates Channel to use this Bot!**\n\nDue to Overload, Only Channel Subscribers can use the Bot!",
 					reply_markup=InlineKeyboardMarkup(
 						[
 							[
@@ -502,6 +498,8 @@ async def button(bot, cmd: CallbackQuery):
 			size_tag = "40%"
 		elif int(watermark_size) == 45:
 			size_tag = "45%"
+               elif int(watermark_size) == 60:
+			size_tag = "60%"
 		else:
 			size_tag = "7%"
 		try:
