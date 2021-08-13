@@ -43,7 +43,7 @@ async def HelpWatermark(bot, cmd):
 	if Config.UPDATES_CHANNEL:
 		fsub = await handle_force_subscribe(bot, cmd)
 		if fsub == 400:
-		return
+		        return
 	await cmd.reply_text(
 		text=Config.USAGE_WATERMARK_ADDER,
 		parse_mode="Markdown",
