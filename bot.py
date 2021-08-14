@@ -1,11 +1,15 @@
-# (c) @AbirHasan2005
+# (c) @APBotz
 
 # This is Telegram Video Watermark Adder Bot's Source Code.
-# I Hardly Made This. So Don't Forget to Give Me Credits.
 # Done this Huge Task for Free. If you guys not support me,
 # I will stop making such things!
 
 # Edit anything at your own risk!
+
+# Don't forget to help me if I done any mistake in the codes.
+# Support Group: @APSupportGroup 
+# Bots Channel: @APBotz
+
 
 import os
 import time
@@ -43,15 +47,23 @@ async def HelpWatermark(bot, cmd):
 	if Config.UPDATES_CHANNEL:
 		fsub = await handle_force_subscribe(bot, cmd)
 		if fsub == 400:
-		        return
+			return
 	await cmd.reply_text(
 		text=Config.USAGE_WATERMARK_ADDER,
 		parse_mode="Markdown",
-		reply_markup=([[InlineKeyboardButton("🤖 Updates Channel", url="https://t.me/APBotz"), InlineKeyboardButton("👥 Support Group", url="https://t.me/APSupportGroup")]]),
-	 disable_web_page_preview=True
+		reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Owner", url="https://t.me/APBotz"), InlineKeyboardButton("Support Group", url="https://t.me/APSupportGroup")], [InlineKeyboardButton("Bots Channel", url="https://t.me/APBotz")], [InlineKeyboardButton("Source Code", url="https://t.me/APBotz")]]),
+		disable_web_page_preview=True
 	)
 
-@APBot.on_message(filters.command("settings") & filters.private)
+
+@AHBot.on_message(filters.command(["reset"]) & filters.private)
+async def reset(bot, update):
+        await db.delete_user(update.from_user.id)
+        await db.add_user(update.from_user.id)
+        await update.reply_text("Settings reseted successfully")
+
+
+@AHBot.on_message(filters.command("settings") & filters.private)
 async def SettingsBot(bot, cmd):
 	if not await db.is_user_exist(cmd.from_user.id):
 		await db.add_user(cmd.from_user.id)
@@ -70,9 +82,9 @@ async def SettingsBot(bot, cmd):
 		position_tag = "Bottom Left"
 	elif watermark_position == "main_w-overlay_w-5:main_h-overlay_h-5":
 		position_tag = "Bottom Right"
-	elif watermark_position == "main_w-overlay_w-5:5":
+	elif watermark_position == "main_w-overlay_w-5:2":
 		position_tag = "Top Right"
-	elif watermark_position == "5:5":
+	elif watermark_position == "5:2":
 		position_tag = "Top Left"
 
 	watermark_size = await db.get_size(cmd.from_user.id)
@@ -106,11 +118,12 @@ async def SettingsBot(bot, cmd):
 		reply_markup=InlineKeyboardMarkup(
 			[
 				[InlineKeyboardButton(f"Watermark Position - {position_tag}", callback_data="lol")],
-				[InlineKeyboardButton("Set Top Left", callback_data=f"position_5:5"), InlineKeyboardButton("Set Top Right", callback_data=f"position_main_w-overlay_w-5:5")],
+				[InlineKeyboardButton("Set Top Left", callback_data=f"position_5:2"), InlineKeyboardButton("Set Top Right", callback_data=f"position_main_w-overlay_w-5:2")],
 				[InlineKeyboardButton("Set Bottom Left", callback_data=f"position_5:main_h-overlay_h"), InlineKeyboardButton("Set Bottom Right", callback_data=f"position_main_w-overlay_w-5:main_h-overlay_h-5")],
 				[InlineKeyboardButton(f"Watermark Size - {size_tag}", callback_data="lel")],
 				[InlineKeyboardButton("5%", callback_data=f"size_5"), InlineKeyboardButton("7%", callback_data=f"size_7"), InlineKeyboardButton("10%", callback_data=f"size_10"), InlineKeyboardButton("15%", callback_data=f"size_15"), InlineKeyboardButton("20%", callback_data=f"size_20")],
-				[InlineKeyboardButton("25%", callback_data=f"size_25"), InlineKeyboardButton("30%", callback_data=f"size_30"), InlineKeyboardButton("35%", callback_data=f"size_30"), InlineKeyboardButton("40%", callback_data=f"size_40"), InlineKeyboardButton("45%", callback_data=f"size_45")]
+				[InlineKeyboardButton("25%", callback_data=f"size_25"), InlineKeyboardButton("30%", callback_data=f"size_30"), InlineKeyboardButton("35%", callback_data=f"size_30"), InlineKeyboardButton("40%", callback_data=f"size_40"), InlineKeyboardButton("45%", callback_data=f"size_45")],
+				[InlineKeyboardButton(f"Reset Settings To Default", callback_data="reset")]
 			]
 		)
 	)
@@ -205,13 +218,13 @@ async def VidWatermarkAdder(bot, cmd):
 		position_tag = "Bottom Left"
 	elif watermark_position == "main_w-overlay_w-5:main_h-overlay_h-5":
 		position_tag = "Bottom Right"
-	elif watermark_position == "main_w-overlay_w-5:5":
+	elif watermark_position == "main_w-overlay_w-5:2":
 		position_tag = "Top Right"
-	elif watermark_position == "5:5":
+	elif watermark_position == "5:2":
 		position_tag = "Top Left"
 	else:
 		position_tag = "Top Left"
-		watermark_position = "5:5"
+		watermark_position = "5:2"
 
 	watermark_size = await db.get_size(cmd.from_user.id)
 	await editable.edit(f"Trying to Add Watermark to the Video at {position_tag} Corner ...\n\nPlease Wait!")
@@ -409,11 +422,11 @@ async def button(bot, cmd: CallbackQuery):
 					disable_web_page_preview=True
 				)
 				return
-	await cmd.reply_text(
-		text=Config.USAGE_WATERMARK_ADDER,
-		parse_mode="Markdown",
-		reply_markup=([[InlineKeyboardButton("Updates Channel", url="https://t.me/APBotz"), InlineKeyboardButton("Support Group", url="https://t.me/APSupportGroup")]]),
-	 disable_web_page_preview=True
+		await cmd.message.edit(
+			text=Config.USAGE_WATERMARK_ADDER,
+			parse_mode="Markdown",
+			reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Developer", url="https://t.me/AbirHasan2005"), InlineKeyboardButton("Support Group", url="https://t.me/APSupportGroup")], [InlineKeyboardButton("Bots Channel", url="https://t.me/APBotz")]]),
+			disable_web_page_preview=True
 		)
 
 	elif "lol" in cb_data:
@@ -436,7 +449,7 @@ async def button(bot, cmd: CallbackQuery):
 					return
 			except UserNotParticipant:
 				await cmd.message.edit(
-					text="**You Still Didn't Join My Updates Channel, Please Join My Updates Channel to use this Bot!**\n\nDue to Overload, Only Channel Subscribers can use the Bot!",
+					text="**You Still Didn't Join ☹️, Please Join My Updates Channel to use this Bot!**\n\nDue to Overload, Only Channel Subscribers can use the Bot!",
 					reply_markup=InlineKeyboardMarkup(
 						[
 							[
@@ -468,9 +481,9 @@ async def button(bot, cmd: CallbackQuery):
 			position_tag = "Bottom Left"
 		elif watermark_position == "main_w-overlay_w-5:main_h-overlay_h-5":
 			position_tag = "Bottom Right"
-		elif watermark_position == "main_w-overlay_w-5:5":
+		elif watermark_position == "main_w-overlay_w-5:2":
 			position_tag = "Top Right"
-		elif watermark_position == "5:5":
+		elif watermark_position == "5:2":
 			position_tag = "Top Left"
 		else:
 			position_tag = "Top Left"
@@ -496,8 +509,6 @@ async def button(bot, cmd: CallbackQuery):
 			size_tag = "40%"
 		elif int(watermark_size) == 45:
 			size_tag = "45%"
-               elif int(watermark_size) == 60:
-			size_tag = "60%"
 		else:
 			size_tag = "7%"
 		try:
@@ -508,11 +519,12 @@ async def button(bot, cmd: CallbackQuery):
 				reply_markup=InlineKeyboardMarkup(
 					[
 						[InlineKeyboardButton(f"Watermark Position - {position_tag}", callback_data="lol")],
-						[InlineKeyboardButton("Set Top Left", callback_data=f"position_5:5"), InlineKeyboardButton("Set Top Right", callback_data=f"position_main_w-overlay_w-5:5")],
+						[InlineKeyboardButton("Set Top Left", callback_data=f"position_5:2"), InlineKeyboardButton("Set Top Right", callback_data=f"position_main_w-overlay_w-5:2")],
 						[InlineKeyboardButton("Set Bottom Left", callback_data=f"position_5:main_h-overlay_h"), InlineKeyboardButton("Set Bottom Right", callback_data=f"position_main_w-overlay_w-5:main_h-overlay_h-5")],
 						[InlineKeyboardButton(f"Watermark Size - {size_tag}", callback_data="lel")],
 						[InlineKeyboardButton("5%", callback_data=f"size_5"), InlineKeyboardButton("7%", callback_data=f"size_7"), InlineKeyboardButton("10%", callback_data=f"size_10"), InlineKeyboardButton("15%", callback_data=f"size_15"), InlineKeyboardButton("20%", callback_data=f"size_20")],
-						[InlineKeyboardButton("25%", callback_data=f"size_25"), InlineKeyboardButton("30%", callback_data=f"size_30"), InlineKeyboardButton("35%", callback_data=f"size_30"), InlineKeyboardButton("40%", callback_data=f"size_40"), InlineKeyboardButton("45%", callback_data=f"size_45")]
+						[InlineKeyboardButton("25%", callback_data=f"size_25"), InlineKeyboardButton("30%", callback_data=f"size_30"), InlineKeyboardButton("35%", callback_data=f"size_30"), InlineKeyboardButton("40%", callback_data=f"size_40"), InlineKeyboardButton("45%", callback_data=f"size_45")],
+				                [InlineKeyboardButton(f"Reset Settings To Default", callback_data="reset")]
 					]
 				)
 			)
@@ -529,6 +541,11 @@ async def button(bot, cmd: CallbackQuery):
 			await cmd.answer("User Banned from Updates Channel!", show_alert=True)
 		except Exception as e:
 			await cmd.answer(f"Can't Ban Him!\n\nError: {e}", show_alert=True)
+
+	elif "reset" in cb_data:
+		await db.delete_user(cmd.from_user.id)
+		await db.add_user(cmd.from_user.id)
+		await cmd.answer("Settings Reseted Successfully!", show_alert=True)
 
 
 AHBot.run()
