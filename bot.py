@@ -82,9 +82,9 @@ async def SettingsBot(bot, cmd):
 		position_tag = "Bottom Left"
 	elif watermark_position == "main_w-overlay_w-5:main_h-overlay_h-5":
 		position_tag = "Bottom Right"
-	elif watermark_position == "main_w-overlay_w-5:2":
+	elif watermark_position == "main_w-overlay_w-5:5":
 		position_tag = "Top Right"
-	elif watermark_position == "5:2":
+	elif watermark_position == "5:5":
 		position_tag = "Top Left"
 
 	watermark_size = await db.get_size(cmd.from_user.id)
@@ -118,7 +118,7 @@ async def SettingsBot(bot, cmd):
 		reply_markup=InlineKeyboardMarkup(
 			[
 				[InlineKeyboardButton(f"Watermark Position - {position_tag}", callback_data="lol")],
-				[InlineKeyboardButton("Set Top Left", callback_data=f"position_5:2"), InlineKeyboardButton("Set Top Right", callback_data=f"position_main_w-overlay_w-5:2")],
+				[InlineKeyboardButton("Set Top Left", callback_data=f"position_5:5"), InlineKeyboardButton("Set Top Right", callback_data=f"position_main_w-overlay_w-5:5")],
 				[InlineKeyboardButton("Set Bottom Left", callback_data=f"position_5:main_h-overlay_h"), InlineKeyboardButton("Set Bottom Right", callback_data=f"position_main_w-overlay_w-5:main_h-overlay_h-5")],
 				[InlineKeyboardButton(f"Watermark Size - {size_tag}", callback_data="lel")],
 				[InlineKeyboardButton("5%", callback_data=f"size_5"), InlineKeyboardButton("7%", callback_data=f"size_7"), InlineKeyboardButton("10%", callback_data=f"size_10"), InlineKeyboardButton("15%", callback_data=f"size_15"), InlineKeyboardButton("20%", callback_data=f"size_20")],
@@ -218,13 +218,13 @@ async def VidWatermarkAdder(bot, cmd):
 		position_tag = "Bottom Left"
 	elif watermark_position == "main_w-overlay_w-5:main_h-overlay_h-5":
 		position_tag = "Bottom Right"
-	elif watermark_position == "main_w-overlay_w-5:2":
+	elif watermark_position == "main_w-overlay_w-5:5":
 		position_tag = "Top Right"
-	elif watermark_position == "5:2":
+	elif watermark_position == "5:5":
 		position_tag = "Top Left"
 	else:
 		position_tag = "Top Left"
-		watermark_position = "5:2"
+		watermark_position = "5:5"
 
 	watermark_size = await db.get_size(cmd.from_user.id)
 	await editable.edit(f"Trying to Add Watermark to the Video at {position_tag} Corner ...\n\nPlease Wait!")
@@ -481,9 +481,9 @@ async def button(bot, cmd: CallbackQuery):
 			position_tag = "Bottom Left"
 		elif watermark_position == "main_w-overlay_w-5:main_h-overlay_h-5":
 			position_tag = "Bottom Right"
-		elif watermark_position == "main_w-overlay_w-5:2":
+		elif watermark_position == "main_w-overlay_w-5:5":
 			position_tag = "Top Right"
-		elif watermark_position == "5:2":
+		elif watermark_position == "5:5":
 			position_tag = "Top Left"
 		else:
 			position_tag = "Top Left"
@@ -519,7 +519,7 @@ async def button(bot, cmd: CallbackQuery):
 				reply_markup=InlineKeyboardMarkup(
 					[
 						[InlineKeyboardButton(f"Watermark Position - {position_tag}", callback_data="lol")],
-						[InlineKeyboardButton("Set Top Left", callback_data=f"position_5:2"), InlineKeyboardButton("Set Top Right", callback_data=f"position_main_w-overlay_w-5:2")],
+						[InlineKeyboardButton("Set Top Left", callback_data=f"position_5:5"), InlineKeyboardButton("Set Top Right", callback_data=f"position_main_w-overlay_w-5:5")],
 						[InlineKeyboardButton("Set Bottom Left", callback_data=f"position_5:main_h-overlay_h"), InlineKeyboardButton("Set Bottom Right", callback_data=f"position_main_w-overlay_w-5:main_h-overlay_h-5")],
 						[InlineKeyboardButton(f"Watermark Size - {size_tag}", callback_data="lel")],
 						[InlineKeyboardButton("5%", callback_data=f"size_5"), InlineKeyboardButton("7%", callback_data=f"size_7"), InlineKeyboardButton("10%", callback_data=f"size_10"), InlineKeyboardButton("15%", callback_data=f"size_15"), InlineKeyboardButton("20%", callback_data=f"size_20")],
