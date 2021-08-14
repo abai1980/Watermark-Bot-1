@@ -15,7 +15,7 @@ class Database:
         return dict(
             id=id,
             join_date=datetime.date.today().isoformat(),
-            watermark_position="5:5",
+            watermark_position="5:2",
             watermark_size="7"
         )
 
@@ -43,7 +43,7 @@ class Database:
 
     async def get_position(self, id):
         user = await self.col.find_one({'id': int(id)})
-        return user.get('watermark_position', '5:5')
+        return user.get('watermark_position', '5:2)
 
     async def set_size(self, id, watermark_size):
         await self.col.update_one({'id': id}, {'$set': {'watermark_size': watermark_size}})
