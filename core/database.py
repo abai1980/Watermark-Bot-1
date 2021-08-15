@@ -53,9 +53,9 @@ class Database:
         user = await self.col.find_one({'id': int(id)})
         return user.get('watermark_size', '7')
         
-     async def set_alpha(self, id, watermark_alpha):
+    async def set_alpha(self, id, watermark_alpha):
         await self.col.update_one({'id': id}, {'$set': {'watermark_alpha': watermark_alpha}})
         
-      async def get_alpha(self, id):
+    async def get_alpha(self, id):
         user = await self.col.find_one({'id': int(id)})
         return user.get('watermark_alpha', '0.7')
