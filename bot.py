@@ -531,8 +531,6 @@ async def button(bot, cmd: CallbackQuery):
 			alpha_tag = "0.8"
 		elif int(watermark_alpha) == 0.9:
 			alpha_tag = "0.9"
-                elif int(watermark_alpha) == 1.0:
-			alpha_tag = "1.0"
 		else:
 			alpha_tag = "1.0"
 		try:
@@ -550,8 +548,7 @@ async def button(bot, cmd: CallbackQuery):
 						[InlineKeyboardButton("25%", callback_data=f"size_25"), InlineKeyboardButton("30%", callback_data=f"size_30"), InlineKeyboardButton("35%", callback_data=f"size_30"), InlineKeyboardButton("40%", callback_data=f"size_40"), InlineKeyboardButton("45%", callback_data=f"size_45")],
 						[InlineKeyboardButton("0.1", callback_data=f"alpha_0.1"), InlineKeyboardButton("0.2", callback_data=f"alpha_0.2"), InlineKeyboardButton("0.3", callback_data=f"alpha_0.3"), InlineKeyboardButton("0.4", callback_data=f"alpha_0.4"), InlineKeyboardButton("0.5", callback_data=f"alpha_0.5"),
 InlineKeyboardButton("0.6", callback_data=f"alpha_0.6"), InlineKeyboardButton("0.7", callback_data=f"alpha_0.7"),
-InlineKeyboardButton("0.8", callback_data=f"alpha_0.8"), InlineKeyboardButton("0.9", callback_data=f"alpha_0.9")
-InlineKeyboardButton("1.0", callback_data=f"alpha_1.0")],
+InlineKeyboardButton("0.8", callback_data=f"alpha_0.8"), InlineKeyboardButton("0.9", callback_data=f"alpha_0.9")],
 				                [InlineKeyboardButton(f"Reset Settings To Default", callback_data="reset")]
                                       ]
 				)
