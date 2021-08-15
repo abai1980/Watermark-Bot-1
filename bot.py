@@ -512,6 +512,29 @@ async def button(bot, cmd: CallbackQuery):
 			size_tag = "45%"
 		else:
 			size_tag = "7%"
+		watermark_alpha = await db.get_alpha(cmd.from_user.id)
+		if int(watermark_alpha) == 0.1:
+			alpha_tag = "0.1"
+		elif int(watermark_alpha) == 0.2:
+			alpha_tag = "0.2"
+		elif int(watermark_alpha) == 0.3:
+			alpha_tag = "0.3"
+		elif int(watermark_alpha) == 0.4:
+			alpha_tag = "0.4"
+		elif int(watermark_alpha) == 0.5:
+			alpha_tag = "0.5"
+		elif int(watermark_alpha) == 0.6:
+			alpha_tag = "0.6"
+		elif int(watermark_alpha) == 0.7:
+			alpha_tag = "0.7"
+		elif int(watermark_alpha) == 0.8:
+			alpha_tag = "0.8"
+		elif int(watermark_alpha) == 0.9:
+			alpha_tag = "0.9"
+			elif int(watermark_alpha) == 1.0:
+			alpha_tag = "1.0"
+		else:
+			alpha_tag = "1.0"
 		try:
 			await cmd.message.edit(
 				text="Here you can set your Watermark Settings:",
@@ -525,10 +548,16 @@ async def button(bot, cmd: CallbackQuery):
 						[InlineKeyboardButton(f"Watermark Size - {size_tag}", callback_data="lel")],
 						[InlineKeyboardButton("5%", callback_data=f"size_5"), InlineKeyboardButton("7%", callback_data=f"size_7"), InlineKeyboardButton("10%", callback_data=f"size_10"), InlineKeyboardButton("15%", callback_data=f"size_15"), InlineKeyboardButton("20%", callback_data=f"size_20")],
 						[InlineKeyboardButton("25%", callback_data=f"size_25"), InlineKeyboardButton("30%", callback_data=f"size_30"), InlineKeyboardButton("35%", callback_data=f"size_30"), InlineKeyboardButton("40%", callback_data=f"size_40"), InlineKeyboardButton("45%", callback_data=f"size_45")],
+						[InlineKeyboardButton("0.1", callback_data=f"alpha_0.1"), InlineKeyboardButton("0.2", callback_data=f"alpha_0.2"), InlineKeyboardButton("0.3", callback_data=f"alpha_0.3"), InlineKeyboardButton("0.4", callback_data=f"alpha_0.4"), InlineKeyboardButton("0.5", callback_data=f"alpha_0.5"),
+InlineKeyboardButton("0.6", callback_data=f"alpha_0.6"), InlineKeyboardButton("0.7", callback_data=f"alpha_0.7"),
+InlineKeyboardButton("0.8", callback_data=f"alpha_0.8"), InlineKeyboardButton("0.9", callback_data=f"alpha_0.9")
+InlineKeyboardButton("1.0", callback_data=f"alpha_1.0")],
 				                [InlineKeyboardButton(f"Reset Settings To Default", callback_data="reset")]
-					]
+                                      ]
 				)
-			)
+			)        
+  
+
 		except MessageNotModified:
 			pass
 
