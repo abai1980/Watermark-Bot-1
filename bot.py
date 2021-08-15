@@ -532,7 +532,7 @@ async def button(bot, cmd: CallbackQuery):
 		elif int(watermark_alpha) == 0.9:
 			alpha_tag = "0.9"
 		else:
-			alpha_tag = "1.0"
+			alpha_tag = "0.9"
 		try:
 			await cmd.message.edit(
 				text="Here you can set your Watermark Settings:",
