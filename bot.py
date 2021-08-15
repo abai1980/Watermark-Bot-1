@@ -489,7 +489,7 @@ async def button(bot, cmd: CallbackQuery):
 		else:
 			position_tag = "Top Left"
 
-                watermark_alpha = 128
+                watermark_alpha = "128"
 
 		watermark_size = await db.get_size(cmd.from_user.id)
 		if int(watermark_size) == 5:
