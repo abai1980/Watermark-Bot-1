@@ -16,7 +16,7 @@ class Database:
             id=id,
             join_date=datetime.date.today().isoformat(),
             watermark_position="5:2",
-            watermark_size="7"
+            watermark_size="7",
             watermark_alpha="0.7"
         )
 
