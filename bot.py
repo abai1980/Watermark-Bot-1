@@ -531,7 +531,7 @@ async def button(bot, cmd: CallbackQuery):
 			alpha_tag = "0.8"
 		elif int(watermark_alpha) == 0.9:
 			alpha_tag = "0.9"
-			elif int(watermark_alpha) == 1.0:
+                elif int(watermark_alpha) == 1.0:
 			alpha_tag = "1.0"
 		else:
 			alpha_tag = "1.0"
