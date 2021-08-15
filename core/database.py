@@ -17,6 +17,7 @@ class Database:
             join_date=datetime.date.today().isoformat(),
             watermark_position="5:2",
             watermark_size="7"
+            watermark_alpha="0.7"
         )
 
     async def add_user(self, id):
@@ -51,3 +52,10 @@ class Database:
     async def get_size(self, id):
         user = await self.col.find_one({'id': int(id)})
         return user.get('watermark_size', '7')
+        
+     async def set_alpha(self, id, watermark_alpha):
+        await self.col.update_one({'id': id}, {'$set': {'watermark_alpha': watermark_alpha}})
+        
+      async def get_alpha(self, id):
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('watermark_alpha', '0.7')
