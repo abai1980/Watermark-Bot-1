@@ -292,6 +292,7 @@ async def VidWatermarkAdder(bot, cmd):
 		Image.open(video_thumbnail).convert("RGB").save(video_thumbnail)
 		img = Image.open(video_thumbnail)
 		img.resize((width, height))
+                image = alpha(image, 0.7)
 		img.save(video_thumbnail, "JPEG")
 	except Exception as err:
 		print(f"Error: {err}")
