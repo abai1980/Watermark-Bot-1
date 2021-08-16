@@ -111,28 +111,6 @@ async def SettingsBot(bot, cmd):
 		size_tag = "45%"
 	else:
 		size_tag = "7%"
-        
-        watermark_alpha = await db.get_alpha(cmd.from_user.id)
-	if int(watermark_alpha) == 0.1:
-		alpha_tag = "0.1"
-	elif int(watermark_alpha) == 0.2:
-		alpha_tag = "0.2"
-	elif int(watermark_alpha) == 0.3:
-		alpha_tag = "0.3"
-	elif int(watermark_alpha) == 0.4:
-		alpha_tag = "0.4"
-	elif int(watermark_alpha) == 0.5:
-		alpha_tag = "0.5"
-	elif int(watermark_alpha) == 0.6:
-		alpha_tag = "0.6"
-	elif int(watermark_alpha) == 0.7:
-		alpha_tag = "0.7"
-	elif int(watermark_alpha) == 0.8:
-	        alpha_tag = "0.8"
-        elif int(watermark_alpha) == 0.9:
-	        alpha_tag = "0.9" 
-        else:
-	        alpha_tag = "0.9"
 	## --- Next --- ##
 	await cmd.reply_text(
 		text="Here you can set your Watermark Settings:",
