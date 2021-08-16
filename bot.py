@@ -286,6 +286,7 @@ async def VidWatermarkAdder(bot, cmd):
 		t_response = stdout.decode().strip()
 		print(e_response)
 		print(t_response)
+                image = alpha(img, 0.7)
 		Image.open(video_thumbnail).convert("RGB").save(video_thumbnail)
 		img = Image.open(video_thumbnail)
 		img.resize((width, height))
