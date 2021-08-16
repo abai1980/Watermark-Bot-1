@@ -112,7 +112,7 @@ async def SettingsBot(bot, cmd):
 	else:
 		size_tag = "7%"
         
-        watermark_alpha = await db.get_alpha(cmd.from_user.id)
+       watermark_alpha = await db.get_alpha(cmd.from_user.id)
 	if int(watermark_alpha) == 0.1:
 		alpha_tag = "0.1"
 	elif int(watermark_alpha) == 0.2:
